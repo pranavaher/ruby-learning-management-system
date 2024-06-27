@@ -3,7 +3,11 @@
     <div class="px-6 py-4 flex flex-col justify-between grow">
       <div>
         <div>
-          <%= image_tag("https://picsum.photos/150/150") %>
+          <% if course.image.present? %>
+            <%= image_tag course.image, class: "w-full rounded-t" %>
+          <% else %>
+            <%= image_tag("https://picsum.photos/150/150") %>
+          <% end %>
         </div>
         <div class="flex itens-center justify-between font-bold text-xl mb-2">
           <%= course.title %>
