@@ -5,15 +5,28 @@
     <% end %>
 
     <% if @course.lessons.any? && @course.lessons.first.video.attached? %>
-      <%= video_tag rails_blob_path(@course.lessons.first.video, disposition: "attachment"), controls: true, class: "w-full rounded mb-6" %>
+        <%= video_tag rails_blob_path(@course.lessons.first.video, disposition: "attachment"), controls: true, class: "w-full rounded mb-6" %>
     <% end %>
 
     <div class="border p-6 rounded">
       <div class="flex justify-start items-center flex-wrap w-full am-2">
-        
+        <% @course.categories.each do |category| %>
+          <div class="bg-amaranth-100 text-amaranth-800 text-sm font-semibold mt-2 px-2.5 py-0.5 rounded">
+            <%= category.name %>
+          </div>
+        <% end %>
       </div>
+      <span><%= @course.lessons.count %> <%= "lesson".pluralize(@course.lessons.count) %></span>
+      <h1 class="text-2xl font-bold">
+        <%= @course.title %>
+      </h1>
+      <p class="test-gray-500 mt-2">
+        <%= @course.description %>
+      </p>
     </div>
 
-    <%= link_to "Back to courses", courses_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div>
+      <%= render "sidebar" %>
+    </div>
   </div>
 </div>
