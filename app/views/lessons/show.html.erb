@@ -4,6 +4,15 @@
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
-    <%= render @lesson %>
+    <%= (@lesson.video.present?) ? ( video_tag rails_blob_path(@lesson.video, disposition: "attachment") , autoplay: false, controls: true, class: "rounded" ) : "No video available" %>
+
+    <div class="my-2 border p-4 rounded">
+      <h1 class="text-2xl font-semibold"><%= @lesson.title %></h1>
+      <p class="rexr-gray-700"><%= @lesson.description %></p>
+    </div>
+
+    <div class="my-6 lg:mb-0">
+      <%= link_to "Mark As complete", course_lesson_path(@course, @lesson), data: { 'turbo-method' => :put }, class: "bg-green-500 rounded hover:bg-green-600 text-white-50 px-4 py-2" %>
+    </div>
   </div>
 </div>
