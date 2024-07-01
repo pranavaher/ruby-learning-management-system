@@ -1,0 +1,24 @@
+<div class="w-full mt-4">
+  <% course.lessons.order(:position).each do |lesson| %>
+    <% if lesson.paid? %>
+      <div class="border p-6 hover:bg-grey-200">
+        <div>
+          <i class="fa-solid fa-lock"></i>
+          <span class="font-light">
+            <%= lesson.title %> 
+          </span>
+        </div>
+      </div>
+    <% else %>
+      <%= link_to course_lesson_path(course, lesson) do %>
+        <div class="border p-6 hover:bg-grey-200 <%= @lesson.id == lesson.id ? 'bg-amarath-100' : '' %>">
+          <div>
+            <span class="font-light">
+              <%= lesson.title %> 
+            </span>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
