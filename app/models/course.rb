@@ -3,6 +3,7 @@ class Course < ApplicationRecord
     attachable.variant :thumb, resize: [100, 100]
   end
   has_many :lessons
+  has_many :course_users
   has_and_belongs_to_many :categories
 
   def first_lesson
