@@ -4,8 +4,6 @@
   <% end %>
   
   <div id="courses" class="min-w-full flex flex-wrap justify-center gap-14 pb-6">
-    <% @courses.each do |course| %>
-      <%= render course %>
-    <% end %>
+    <%= render @courses, { user_started_courses: @user_started_courses, user_course_progresses: @user_course_progresses } %>
   </div>
 </div>
