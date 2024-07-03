@@ -1,6 +1,6 @@
 <div class="w-full mt-4">
   <% course.lessons.order(:position).each do |lesson| %>
-    <% if lesson.paid? %>
+    <% if lesson.paid? && !paid_for_course %>
       <div class="border p-6 hover:bg-grey-200">
         <div>
           <i class="fa-solid fa-lock"></i>
