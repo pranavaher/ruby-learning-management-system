@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get "admin" => "admin#index"
 
+  post "/course-checkout" => "webhooks#stripe"
+
   # Defines the root path route ("/")
   root "courses#index"
 end
