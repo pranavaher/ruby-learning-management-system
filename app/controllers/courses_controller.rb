@@ -4,6 +4,7 @@ class CoursesController < ApplicationController
   # GET /courses or /courses.json
   def index
     @courses = Course.all
+    @user_unlocked_courses = current_user&.course_users&.pluck(:course_id)
     @user_started_courses = current_user&.lesson_users&.joins(:lesson)&.pluck(:course_id)&.uniq
     
     if @user_started_courses.present?

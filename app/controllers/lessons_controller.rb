@@ -1,6 +1,7 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: %i[ show update ]
   before_action :set_course, only: %i[ show update ]
+  before_action :check_paid
 
   # GET /lessons/1 or /lessons/1.json
   def show
@@ -23,6 +24,16 @@ class LessonsController < ApplicationController
   end
 
   private
+
+  def check_paid
+    if @lesson.paid && !current_user.course_users.where(course_id: params[:course_id]).exists?
+      if @lesson.previous_lesson
+        redirect_to course_lesson_path(@course, @lesson.previous_lesson), notice: "Purchase course to access next lessons"
+      else
+        redirect_to course_path(@course), notice: "Purchase course to access next lessons"
+      end
+    end
+  end
   
   def set_course
     @course = Course.find(params[:course_id])
