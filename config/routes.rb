@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :checkouts, only: [:create]
 
   namespace :admin do
-    resources :courses
+    resources :courses do 
+      resources :lessons
+    end
   end
 
   get "admin" => "admin#index"
