@@ -28,7 +28,9 @@
 
   <div class="rounded mt-4">
     <div class="flex flex-col">
-      <%= admin_lesson.video.present? ? (video_tag admin_lesson.video, class: "w-64 rounded") : nil %>
+      <% if admin_lesson.video.present? %>
+        <%= image_tag admin_lesson.video, class: "w-64 rounded" %>
+      <% end %>
       <label class="text-sm" for="video">Video</label>
       <%= form.file_field :video, id: "video" %>
     </div>
