@@ -9,13 +9,13 @@ class Admin::LessonsController < AdminController
   def move
     position = params[:position].to_i
     if position == 0
-      @lesson.move_to_top
+      @admin_lesson.move_to_top
     elsif position == @admin_course.lessons.count - 1
-      @lesson.move_to_bottom
+      @admin_lesson.move_to_bottom
     else
-      @lesson.insert_at(position + 1)
+      @admin_lesson.insert_at(position + 1)
     end
-    @lesson.save!
+    @admin_lesson.save!
 
     render json: { message: "success" } 
   end
@@ -27,6 +27,6 @@ class Admin::LessonsController < AdminController
   end
 
   def set_lesson
-    @lesson = @admin_course.lessons.find(params[:id])
+    @admin_lesson = @admin_course.lessons.find(params[:id])
   end
 end
