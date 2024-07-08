@@ -6,6 +6,10 @@ class Admin::LessonsController < AdminController
     @admin_lessons = @admin_course.lessons.order(:position)
   end
 
+  def new
+    @admin_lesson = @admin_course.lessons.new
+  end
+
   def move
     position = params[:position].to_i
     if position == 0
