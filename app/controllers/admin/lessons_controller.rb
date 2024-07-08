@@ -1,6 +1,6 @@
 class Admin::LessonsController < AdminController
   before_action :set_course
-  before_action :set_lesson, only: [:move, :show, :edit, :update]
+  before_action :set_lesson, only: [:move, :show, :edit, :update, :destroy]
 
   def index
     @admin_lessons = @admin_course.lessons.order(:position)
@@ -45,6 +45,14 @@ class Admin::LessonsController < AdminController
       redirect_to admin_course_lessons_path(@admin_course), notice: "Lesson was successfully updated."
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if @admin_lesson.destroy
+      redirect_to admin_course_lessons_path(@admin_course), notice: "Lesson was successfully deleted."
+    else
+      redirect_to admin_course_lessons_path(@admin_course), alert: "Lesson was not deleted."
     end
   end
 
