@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :courses do 
       resources :lessons
     end
+    resources :users
   end
 
   get "admin" => "admin#index"
