@@ -80,3 +80,4 @@ gem "stripe", "~> 10.3"
 gem "acts_as_list", "~> 1.0"
 gem 'pry', '~> 0.14.2'
 gem "groupdate", "~> 6.4"
+gem "aws-sdk-s3"
