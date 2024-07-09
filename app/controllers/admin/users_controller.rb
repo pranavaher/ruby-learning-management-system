@@ -1,6 +1,11 @@
 class Admin::UsersController < AdminController
   def index
-    @admin_users = User.all
+    if params[:query].present?
+      @query = params[:query]
+      @admin_users = User.where('email LIKE ?', "%#{@query}%").order(created_at: :desc)
+    else
+      @admin_users = User.all.order(created_at: :desc)
+    end
   end
 
   def show
